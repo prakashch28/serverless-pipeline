@@ -6,7 +6,7 @@ resource "aws_glue_catalog_database" "db" {
 resource "aws_s3_object" "glue_script" {
   bucket  = aws_s3_bucket.raw.id
   key     = "scripts/glue_job.py"
-  content = file("${path.module}/glue/glue_job.py") # <- make sure this path exists
+  content = file("${path.module}/glue/glue_job.py") 
   etag    = filemd5("${path.module}/glue/glue_job.py")
 }
 
