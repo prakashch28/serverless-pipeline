@@ -9,7 +9,7 @@ RAW_PATH = f"s3://{ARGS['RAW_BUCKET']}/{ARGS['RAW_PREFIX']}{ARGS['RAW_DATE']}/"
 PROC_PATH = f"s3://{ARGS['PROCESSED_BUCKET']}/{ARGS['PROCESSED_PREFIX']}"
 
 
-# 👇 Explicit schema so Spark doesn’t need to infer
+#  Explicit schema so Spark doesn’t need to infer
 schema = T.StructType([
     T.StructField("event_id",   T.StringType(),  True),
     T.StructField("timestamp",  T.StringType(),  True),  # parsed later
@@ -31,8 +31,8 @@ def main():
         df = (spark.read
                 .option("mode", "PERMISSIVE")
                 .option("multiLine", "false")
-                .option("recursiveFileLookup", "true")   # 👈 walk subfolders under raw/
-                .schema(schema)                          # 👈 avoid inference errors
+                .option("recursiveFileLookup", "true")   #  walk subfolders under raw/
+                .schema(schema)                          #  avoid inference errors
                 .json(RAW_PATH))
 
         # Guard: empty dataset is OK — exit 0 so pipeline doesn’t “fail”
