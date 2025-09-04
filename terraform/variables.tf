@@ -26,7 +26,7 @@ variable "processed_prefix" {
 # Orchestrator schedule (EventBridge). Use a rate or cron. Example: rate(5 minutes)
 variable "orchestrator_schedule" {
   type    = string
-  default = "rate(5 minutes)"
+  default = "rate(30 minutes)"
 }
 
 # variables.tf
